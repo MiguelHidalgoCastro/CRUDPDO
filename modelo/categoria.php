@@ -1,15 +1,11 @@
 <?php
 
-class Cliente
+class Categoria
 {
-    private $conexionPDO;
 
+    private $conexionPDO;
     public $id;
-    public $dni;
     public $Nombre;
-    public $Apellido;
-    public $Correo;
-    public $Telefono;
 
     public function __construct()
     {
@@ -23,7 +19,7 @@ class Cliente
     public function Listar()
     {
         try {
-            $consulta = $this->conexionPDO->prepare("SELECT * FROM cliente");
+            $consulta = $this->conexionPDO->prepare("SELECT * FROM categorias");
             $consulta->execute();
 
             return $consulta->fetchAll(PDO::FETCH_OBJ);

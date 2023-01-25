@@ -1,20 +1,20 @@
 <?php
-require_once 'modelo/cliente.php';
+require_once 'modelo/categoria.php';
 
 
-class ControladorCliente
+class ControladorCategoria
 {
 
     private $modelo;
 
     public function __construct()
     {
-        $this->modelo = new Cliente();
+        $this->modelo = new Categoria();
     }
 
     public function Index()
     {
         require_once 'vista/header.php';
-        require_once 'vista/cliente/cliente.php';
+        require_once 'vista/categoria/categoria.php';
     }
 }

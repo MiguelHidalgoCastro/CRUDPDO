@@ -1,7 +1,7 @@
 <?php
 require_once 'conexion/conexion.php';
 
-$controller = 'cliente';
+$controller = 'categoria';
 
 if (!isset($_REQUEST['c'])) {
     require_once "controlador/controlador$controller.php";
