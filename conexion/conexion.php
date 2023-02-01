@@ -1,10 +1,16 @@
 <?php
+require_once 'config/config.php';
 class Conexion
 {
-    public static function Conectar()
+    /**
+     * Función para conectar con el driver PDO para conectar con la BBDD
+     */
+    public static function conectar()
     {
-        $pdo = new PDO('mysql:host=2daw.esvirgua.com;dbname=user2daw_BD1-06;charset=utf8', 'user2daw_06', '6F.Z@GPTwB!s');
+        $pdo = new PDO('mysql:host=' . SERVIDOR . ';dbname=' . DB . ';charset=' . CHARSET, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
+
+   
 }
