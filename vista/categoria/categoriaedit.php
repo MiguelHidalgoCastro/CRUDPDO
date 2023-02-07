@@ -5,7 +5,7 @@
     <form id="frm-categoria" action="?c=categoria&a=guardar" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $categoria->id; ?>" />
 
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label>Nombre</label>
             <input type="text" name="nombre" value="<?php echo $categoria->nombre; ?>" class="form-control" placeholder="Ingrese nombre categoria" required>
         </div>

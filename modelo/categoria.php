@@ -15,7 +15,6 @@ class Categoria
     {
         try {
             $this->conexion = Conexion::conectar();
-
         } catch (Exception $e) {
             die($e->getMessage());
         }

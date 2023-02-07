@@ -1,0 +1,2 @@
+<a class="btn btn-warning me-2" href="?c=reto&a=crud&id=<?php echo $r->id; ?>">Editar</a>
+<a class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=reto&a=eliminar&id=<?php echo $r->id; ?>">Eliminar</a>
