@@ -40,13 +40,6 @@ class ControladorReto
         return $this->modelo->retosFiltradoPorProfesor($id);
     }
 
-    public function filtrado()
-    {
-        $idCategoria = $_POST['filtrado'];
-        require_once 'vista/header.php';
-        require_once 'vista/reto/retofind.php';
-        // return $this->modelo->filtrado($idCategoria);
-    }
 
     public function getCategoria($id)
     {
@@ -145,5 +138,19 @@ class ControladorReto
 
         require_once 'vista/header.php';
         require_once 'vista/reto/retoconsultar.php';
+    }
+
+    public function filtrado()
+    {
+        $idCategoria = $_POST['filtrado'];
+        if ($idCategoria != 0)
+            $retos = $this->modelo->filtrado($idCategoria);
+        else
+            $retos = $this->modelo->listar();
+        $categorias = $this->modelocategorias->listar();
+
+        require_once 'vista/header.php';
+        require_once 'vista/reto/retofind.php';
+        // return $this->modelo->filtrado($idCategoria);
     }
 }

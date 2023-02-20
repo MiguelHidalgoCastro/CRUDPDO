@@ -87,6 +87,7 @@
         </div>
     </form>
 </div>
+</body>
 <script>
     /**
      * Es una función que validar los campos del reto para que estén rellenos
@@ -97,3 +98,4 @@
         });
     })
 </script>
+</html>

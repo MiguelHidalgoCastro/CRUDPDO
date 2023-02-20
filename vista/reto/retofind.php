@@ -1,5 +1,4 @@
 <div class="container box col-6">
-
     <div class="container-fluid mb-3">
         <form id="frm-filtro" action="?c=reto&a=filtrado" method="post" enctype="multipart/form-data">
             <div class="row">
@@ -35,7 +34,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($this->listar() as $r) : ?>
+            <?php foreach ($retos as $r) : ?>
                 <tr>
                     <td><?php echo $r->id; ?></td>
                     <td><?php echo $r->nombre; ?></td>
@@ -43,24 +42,24 @@
                     <td><?php echo $r->dirigido ?></td>
                     <td>
                         <a class="btn btn-secondary" href="?c=reto&a=consultar&id=<?php echo $r->id; ?>">Consultar</a>
-                        <!--<a class="btn btn-warning" href="?c=reto&a=mod&id=<?php echo $r->id; ?>">Modificar</a>-->
-                        <!-- <a class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=reto&a=eliminar&id=<?php echo $r->id; ?>">Eliminar</a>-->
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-</div>
-</body>
 
+    <button class="btn btn-secondary" id="btnAtras">ATRÁS</button>
+</div>
+
+</body>
 <script>
     /**
      * Es una función que validar los campos del reto para que estén rellenos
      */
     $(document).ready(function() {
-        $("#frm-filtro").submit(function() {
-            return $(this).validate();
-        });
+        $("#btnAtras").click(function() {
+            window.location.href = 'index.php?c=reto&a=index'
+        })
     })
 </script>
 

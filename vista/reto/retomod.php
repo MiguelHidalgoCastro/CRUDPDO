@@ -107,7 +107,7 @@
         </div>
     </form>
 </div>
-
+</body>
 <script>
     $(document).ready(function() {
         $("#frm-categoria").submit(function() {
@@ -115,3 +115,4 @@
         });
     })
 </script>
+</html>
