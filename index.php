@@ -18,7 +18,6 @@ if (!isset($_GET['c'])) {
 } else {
     $controller = strtolower($_GET['c']);
     $accion = isset($_GET['a']) ? $_GET['a'] : 'Index';
-
     require_once "controlador/controlador$controller.php";
     $controller = 'Controlador' . ucwords($controller);
     $controller = new $controller;

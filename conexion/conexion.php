@@ -7,10 +7,8 @@ class Conexion
      */
     public static function conectar()
     {
-        $pdo = new PDO('mysql:host=' . SERVIDOR . ';dbname=' . DB . ';charset=' . CHARSET, DBUSER, DBPASS);
+        $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB . ';charset=' . CHARSET, DB_USER, DB_PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
-
-   
 }

@@ -33,16 +33,19 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Retos</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="?c=reto&a=buscar&id=all">Lista de Retos</a></li>
+                        <li><a class="dropdown-item" href="?c=reto&a=index">Lista de Retos</a></li>
                         <li><a class="dropdown-item" href="?c=reto&a=add">Añadir Reto</a></li>
-                        <li><a class="dropdown-item text-warning" href="?c=reto&a=mod&id=4">Modificar Retos</a></li>
+                        <li><a class="dropdown-item text-uppercase text-primary" href="?c=reto&a=listarPorProfesor">Mis Retos</a></li>
+                        <!--
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item text-danger text-uppercase" href="#">Borrar Reto</a></li>
+                        <li>
+                            <a class="dropdown-item text-danger text-uppercase" href="?c=reto&a=borrar">Borrar Reto</a>
+                        </li>
+                        -->
                     </ul>
                 </li>
-
             </ul>
         </div>
     </nav>

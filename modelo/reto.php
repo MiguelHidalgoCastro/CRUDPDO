@@ -42,6 +42,18 @@ class Reto
         }
     }
 
+    public function retosFiltradoPorProfesor($id)
+    {
+        try {
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idProfesor = ? ORDER BY id ASC");
+            $consulta->execute(array($id));
+
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function obtener($id)
     {
         try {
@@ -54,11 +66,17 @@ class Reto
     }
 
 
-    public function actualizar(reto $data)
+    public function actualizar_old(reto $data)
     {
         try {
-            $update = $this->conexion->prepare("UPDATE retos SET nombre = ? WHERE id = ?");
-            $update->execute(array($data->nombre, $data->id));
+            $update = $this->conexion->prepare("UPDATE retos 
+            SET nombre = ?, dirigido = ?, descripcion = ?,
+            fechaInicioInscripcion = ?,  fechaFinInscripcion = ?,
+            fechaInicioReto = ?, fechaFinReto = ?,
+            fechaPublicacion = ?, publicado = ?,
+            idCategoria = ?, idProfesor = ?
+            WHERE id = ?");
+            $update->execute(array($data->nombre, $data->dirigido, $data->descripcion, $data->fii, $data->ffi, $data->fir, $data->ffr, $data->fechaPublicacion, $data->publicado, $data->idCategoria, $data->idProfesor, $data->id));
             // $update->execute([$data->nombre, $data->id]);
 
         } catch (Exception $e) {
@@ -66,14 +84,68 @@ class Reto
         }
     }
 
+
+    public function actualizar(reto $data)
+    {
+        try {
+            $update = $this->conexion->prepare("UPDATE retos 
+            SET nombre = :nombre, dirigido = :dirigido, descripcion = :descripcion,
+            fechaInicioInscripcion = :fechaInicioInscripcion,  fechaFinInscripcion = :fechaFinInscripcion,
+            fechaInicioReto = :fechaInicioReto, fechaFinReto = :fechaFinReto,
+            fechaPublicacion = :fechaPublicacion, publicado = :publicado,
+            idCategoria = :idCategoria, idProfesor = :idProfesor
+            WHERE id = :id");
+
+            $update->bindValue(':nombre', $data->nombre);
+            $update->bindValue(':dirigido', $data->dirigido);
+            $update->bindValue(':descripcion', $data->descripcion);
+            $update->bindValue(':fechaInicioInscripcion', $data->fii);
+            $update->bindValue(':fechaFinInscripcion', $data->ffi);
+            $update->bindValue(':fechaInicioReto', $data->fir);
+            $update->bindValue(':fechaFinReto', $data->ffr);
+            $update->bindValue(':fechaPublicacion', $data->fechaPublicacion);
+            $update->bindValue(':publicado', $data->publicado, PDO::PARAM_INT);
+            $update->bindValue(':idCategoria', $data->idCategoria);
+            $update->bindValue(':idProfesor', $data->idProfesor);
+            $update->bindValue(':id', $data->id);
+
+            $update->execute();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
     public function registrar(reto $data)
     {
         try {
-            $insert = $this->conexion->prepare("INSERT INTO retos 
-            (nombre,dirigido,descripcion,fechaInicioInscripcion, fechaFinInscripcion,fechaInicioReto, fechaFinReto, fechaPublicacion, publicado, idCategoria, idProfesor) 
-            VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            $insert->execute(array($data->nombre, $data->dirigido, $data->descripcion, $data->fii, $data->ffi, $data->fir, $data->ffr, $data->fechaPublicacion, $data->publicado, $data->idCategoria, $data->idProfesor));
-            //$insert->bindParam(1, $data->nombre);
+            if ($data->descripcion == '')
+                $data->descripcion = null;
+
+            $sqlInsert = "INSERT INTO retos (nombre,dirigido,descripcion,
+            fechaInicioInscripcion, fechaFinInscripcion,
+            fechaInicioReto, fechaFinReto, fechaPublicacion, 
+            publicado, idCategoria, idProfesor)
+            VALUES (:nombre, :dirigido, :descripcion,
+            :fechaInicioInscripcion,:fechaFinInscripcion,
+            :fechaInicioReto,:fechaFinReto,:fechaPublicacion,
+            :publicado,:idCategoria,:idProfesor)";
+
+            $insert = $this->conexion->prepare($sqlInsert);
+            $insert->bindValue(':nombre', $data->nombre);
+            $insert->bindValue(':dirigido', $data->dirigido);
+            $insert->bindValue(':descripcion', $data->descripcion);
+            $insert->bindValue(':fechaInicioInscripcion', $data->fii);
+            $insert->bindValue(':fechaFinInscripcion', $data->ffi);
+            $insert->bindValue(':fechaInicioReto', $data->fir);
+            $insert->bindValue(':fechaFinReto', $data->ffr);
+            $insert->bindValue(':fechaPublicacion', $data->fechaPublicacion);
+            $insert->bindValue(':publicado', $data->publicado, PDO::PARAM_INT);
+            $insert->bindValue(':idCategoria', $data->idCategoria);
+            $insert->bindValue(':idProfesor', $data->idProfesor);
+
+            var_dump($data->publicado);
+            $insert->execute();
         } catch (Exception $e) {
             die($e->getMessage());
         }

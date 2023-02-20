@@ -13,9 +13,8 @@
             <div class="form-group col-2 mb-2">
                 <label>Publicar</label>
                 <select class="form-select" aria-label="Select de publicar" name='publicar'>
-                    <option selected disabled hidden>---Selecciona---</option>
                     <option value="0">Publicar Reto</option>
-                    <option value="1">Guardar Borrador</option>
+                    <option value="1" selected>Guardar Borrador</option>
                 </select>
             </div>
         </div>
@@ -89,6 +88,9 @@
     </form>
 </div>
 <script>
+    /**
+     * Es una función que validar los campos del reto para que estén rellenos
+     */
     $(document).ready(function() {
         $("#frm-reto").submit(function() {
             return $(this).validate();

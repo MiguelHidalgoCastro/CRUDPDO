@@ -8,7 +8,7 @@ class ConexionM
 
     public static function conectar()
     {
-        $mysqli = new mysqli(SERVIDOR, DBUSER, DBPASS, DB);
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB);
         $mysqli->set_charset(CHARSET);
         return $mysqli;
     }

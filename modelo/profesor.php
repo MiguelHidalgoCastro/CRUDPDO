@@ -31,4 +31,14 @@ class Profesor
             die($e->getMessage());
         }
     }
+    public function obtenerNombre($id)
+    {
+        try {
+            $consulta = $this->conexion->prepare("SELECT * FROM profesores WHERE id = ?");
+            $consulta->execute([$id]);
+            return $consulta->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }

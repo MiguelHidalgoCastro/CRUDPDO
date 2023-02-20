@@ -2,7 +2,7 @@
     <h1 class="page-header">
         <?php echo $reto->nombre ?>
     </h1>
-    <form id="frm-categoria" action="?c=reto&a=guardar" method="post" enctype="multipart/form-data">
+    <form id="frm-mod" action="?c=reto&a=guardar&idProf=<?php echo $_GET['idProf']; ?>&idCat=<?php echo $_GET['idCat']; ?>" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $reto->id; ?>" />
         <div class="row mb-3">
             <div class="form-group col-5 mb-2">
@@ -35,7 +35,7 @@
                 </select>
             </div>
         </div>
-
+        <!-- NO QUIERO EDITAR NI LA CATEGORÍA Y EL PROFESOR ME VIENE POR LA URL
         <div class="row mb-3">
             <div class="col-5 form-group">
                 <label for="idCat">Categoría</label>
@@ -49,6 +49,7 @@
 
                 </select>
             </div>
+            
             <div class="col-5 form-group">
                 <label for="idProf">Profesor</label>
                 <select class="form-select" aria-label="Select de profesores" name="idProf">
@@ -60,8 +61,10 @@
 
                 </select>
             </div>
-        </div>
 
+           
+        </div>
+ -->
         <div class="row mb-3">
             <div class="col-5 me-2 mx-2">
                 <div class="row">
@@ -100,7 +103,7 @@
         </div>
 
         <div class="row">
-            <button type="submit" class="btn btn-primary btn-lg mt-4 text-uppercase">Añadir</button>
+            <button type="submit" class="btn btn-warning btn-lg mt-4 text-uppercase">Modificar</button>
         </div>
     </form>
 </div>
@@ -110,6 +113,5 @@
         $("#frm-categoria").submit(function() {
             return $(this).validate();
         });
-        //console.log($("idCat").attr('id'))
     })
 </script>

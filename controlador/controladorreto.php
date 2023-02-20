@@ -22,7 +22,8 @@ class ControladorReto
         require_once 'vista/reto/reto.php';
     }
 
-    public function buscar(){
+    public function buscar()
+    {
         $categorias = $this->modelocategorias->listar();
         require_once 'vista/header.php';
         require_once 'vista/reto/reto.php';
@@ -31,13 +32,20 @@ class ControladorReto
 
     public function listar()
     {
-        $array = $this->modelo->listar();
-        return $array;
+        return $this->modelo->listar();
     }
 
-    public function filtrado($idCategoria)
+    public function retosFiltradoPorProfesor($id)
     {
-        return $this->modelo->filtrado($idCategoria);
+        return $this->modelo->retosFiltradoPorProfesor($id);
+    }
+
+    public function filtrado()
+    {
+        $idCategoria = $_POST['filtrado'];
+        require_once 'vista/header.php';
+        require_once 'vista/reto/retofind.php';
+        // return $this->modelo->filtrado($idCategoria);
     }
 
     public function getCategoria($id)
@@ -57,58 +65,85 @@ class ControladorReto
     public function mod()
     {
         $categorias = $this->modelocategorias->listar();
-        $profesores = $this->modeloprofesores->listar();
+        // $profesores = $this->modeloprofesores->listar();
 
         $reto = new Reto();
-        $reto = $this->modelo->obtener($_REQUEST['id']);
+        $reto = $this->modelo->obtener($_GET['id']);
 
         require_once 'vista/header.php';
         require_once 'vista/reto/retomod.php';
-    }
-
-    public function crud()
-    {
-        $reto = new Reto();
-
-        if (isset($_REQUEST['id'])) {
-            $reto = $this->modelo->obtener($_REQUEST['id']);
-        }
-
-        require_once 'vista/header.php';
-        require_once 'vista/reto/retoedit.php';
     }
 
     public function guardar()
     {
         $reto = new Reto();
 
-        $reto->id = $_REQUEST['id'];
-        $reto->nombre = $_REQUEST['nombre'];
-        $reto->publicado = $_REQUEST['publicar'];
-        $reto->dirigido = $_REQUEST['dirigido'];
-        $reto->descripcion = $_REQUEST['descripcion'];
+        if (isset($_POST['id']))
+            $reto->id = $_POST['id'];
+        else
+            $reto->id = 0;
+        $reto->nombre = $_POST['nombre'];
 
-        $reto->fii = $_REQUEST['fechaInicioInscripcion'];
-        $reto->ffi = $_REQUEST['fechaFinInscripcion'];
+        $reto->dirigido = $_POST['dirigido'];
 
-        $reto->fir = $_REQUEST['fechaInicioReto'];
-        $reto->ffr = $_REQUEST['fechaFinReto'];
+        $reto->descripcion = $_POST['descripcion'];
 
-        $reto->idCategoria = $_REQUEST['idCat'];
-        $reto->idProfesor = $_REQUEST['idProf'];
+        $reto->fii = $_POST['fechaInicioInscripcion'];
+        $reto->ffi = $_POST['fechaFinInscripcion'];
 
-        $reto->fechaPublicacion = $_REQUEST['fechaInicioReto'];
+        $reto->fir = $_POST['fechaInicioReto'];
+        $reto->fir = str_replace('T', ' ', $reto->fir);
+        $reto->ffr = $_POST['fechaFinReto'];
+        $reto->ffr = str_replace('T', ' ', $reto->ffr);
+
+        $reto->idCategoria = $_GET['idCat'];
+        $reto->idProfesor = $_GET['idProf'];
+
+        $reto->fechaPublicacion = $_POST['fechaInicioReto'];
+
+
+        $reto->publicado = $_POST['publicar'];
+
 
         $reto->id > 0
             ? $this->modelo->actualizar($reto)
             : $this->modelo->registrar($reto);
 
-        header('Location: index.php?c=reto');
+        header('Location: index.php?c=reto&a=listarPorProfesor');
     }
 
     public function eliminar()
     {
-        $this->modelo->eliminar($_REQUEST['id']);
+        $this->modelo->eliminar($_GET['id']);
         header('Location: index.php?c=reto');
+    }
+
+
+
+    /*Nuevas funciones */
+
+    public function listarPorProfesor()
+    {
+        $idProfesor = 2;
+        $retos = $this->retosFiltradoPorProfesor($idProfesor);
+        $categorias = $this->modelocategorias->listar();
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
+
+        require_once 'vista/header.php';
+        require_once 'vista/reto/retosProfesor.php';
+    }
+
+    public function consultar()
+    {
+
+        $idReto = $_GET['id'];
+
+        $reto = $this->modelo->obtener($idReto);
+        $categoria = $this->modelocategorias->obtener($reto->idCategoria);
+        $profesores = $this->modeloprofesores->listar();
+
+
+        require_once 'vista/header.php';
+        require_once 'vista/reto/retoconsultar.php';
     }
 }

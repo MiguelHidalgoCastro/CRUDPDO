@@ -44,7 +44,7 @@ class Categoria
     }
 
 
-    public function actualizar(categoria $data)
+    public function actualizar(Categoria $data)
     {
         try {
             $update = $this->conexion->prepare("UPDATE categorias SET nombre = ? WHERE id = ?");
@@ -56,7 +56,7 @@ class Categoria
         }
     }
 
-    public function registrar(categoria $data)
+    public function registrar(Categoria $data)
     {
         try {
             $insert = $this->conexion->prepare("INSERT INTO categorias (nombre) VALUES (?)");
