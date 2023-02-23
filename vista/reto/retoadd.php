@@ -13,8 +13,8 @@
             <div class="form-group col-2 mb-2">
                 <label>Publicar</label>
                 <select class="form-select" aria-label="Select de publicar" name='publicar'>
-                    <option value="0">Publicar Reto</option>
-                    <option value="1" selected>Guardar Borrador</option>
+                    <option value="1">Publicar Reto</option>
+                    <option value="0" selected>Guardar Borrador</option>
                 </select>
             </div>
         </div>

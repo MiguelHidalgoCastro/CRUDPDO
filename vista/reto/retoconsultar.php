@@ -40,6 +40,7 @@
     </div>
 
     <button class="btn btn-secondary" id="btnAtras">ATRÁS</button>
+    <button class="btn btn-success" id="btnAtras">INSCRIBIR GRUPO</button>
 </div>
 </body>
 <script>

@@ -2,7 +2,8 @@
     <h1 class="page-header">
         <?php echo $reto->nombre ?>
     </h1>
-    <form id="frm-mod" action="?c=reto&a=guardar&idProf=<?php echo $_GET['idProf']; ?>&idCat=<?php echo $_GET['idCat']; ?>" method="post" enctype="multipart/form-data">
+    <!--&idProf=&idCat="-->
+    <form id="frm-mod" action="?c=reto&a=guardar" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $reto->id; ?>" />
         <div class="row mb-3">
             <div class="form-group col-5 mb-2">
@@ -35,36 +36,7 @@
                 </select>
             </div>
         </div>
-        <!-- NO QUIERO EDITAR NI LA CATEGORÍA Y EL PROFESOR ME VIENE POR LA URL
-        <div class="row mb-3">
-            <div class="col-5 form-group">
-                <label for="idCat">Categoría</label>
-                <select class="form-select" aria-label="Select de categorias" name="idCat">
-                    <option selected disabled hidden>---Selecciona---</option>
-
-                    <?php foreach ($categorias as $categoria) : ?>
-                        <option value=<?php echo $categoria->id ?>><?php echo $categoria->nombre ?></option>
-                    <?php endforeach; ?>
-
-
-                </select>
-            </div>
-            
-            <div class="col-5 form-group">
-                <label for="idProf">Profesor</label>
-                <select class="form-select" aria-label="Select de profesores" name="idProf">
-                    <option selected disabled hidden>---Selecciona---</option>
-
-                    <?php foreach ($profesores as $profesor) : ?>
-                        <option value=<?php echo $profesor->id ?>><?php echo $profesor->nombre ?></option>
-                    <?php endforeach; ?>
-
-                </select>
-            </div>
-
-           
-        </div>
- -->
+                    
         <div class="row mb-3">
             <div class="col-5 me-2 mx-2">
                 <div class="row">
@@ -101,7 +73,10 @@
                 <textarea class="form-control" name="descripcion" rows="6"><?php echo $reto->descripcion ?></textarea>
             </div>
         </div>
-
+        <div class="row">
+            <input type="hidden" name="idProf" value="<?php echo $_GET['idProf']; ?>">
+            <input type="hidden" name="idCat" value="<?php echo $_GET['idCat']; ?>">
+        </div>
         <div class="row">
             <button type="submit" class="btn btn-warning btn-lg mt-4 text-uppercase">Modificar</button>
         </div>

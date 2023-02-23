@@ -30,10 +30,10 @@ class Reto
         }
     }
 
-    public function listar()
+    public function listarNoPublicados()
     {
         try {
-            $consulta = $this->conexion->prepare("SELECT * FROM retos ORDER BY id ASC");
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE publicado = 0 ORDER BY id ASC");
             $consulta->execute();
 
             return $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -42,12 +42,34 @@ class Reto
         }
     }
 
-    public function retosFiltradoPorProfesor($id)
+    public function listarPublicados()
     {
         try {
-            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idProfesor = ? ORDER BY id ASC");
-            $consulta->execute(array($id));
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE publicado = 1 ORDER BY id ASC");
+            $consulta->execute();
 
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function retosfiltradoporprofesorpublicados($id)
+    {
+        try {
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idProfesor = ? AND publicado=1 ORDER BY id ASC");
+            $consulta->execute(array($id));
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function retosfiltradoporprofesorborrador($id)
+    {
+        try {
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idProfesor = ? AND publicado=0 ORDER BY id ASC");
+            $consulta->execute(array($id));
             return $consulta->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {
             die($e->getMessage());
@@ -163,11 +185,15 @@ class Reto
     }
 
 
-    public function filtrado($idCategoria)
+    public function filtrado($idCategoria, $publicado)
     {
         try {
-            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idCategoria= ? ORDER BY id ASC");
-            $consulta->execute([$idCategoria]);
+            $bit = 0;
+            if ($publicado == 'publicado') {
+                $bit = 1;
+            }
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idCategoria= ? AND publicado = ? ORDER BY id ASC");
+            $consulta->execute(array($idCategoria, $bit));
 
             return $consulta->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {

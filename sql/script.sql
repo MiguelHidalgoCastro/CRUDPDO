@@ -37,3 +37,7 @@ VALUES
 
 
 ;
+
+
+ALTER TABLE retos ADD CONSTRAINT CHECK1 CHECK (fechaInicioInscripcion <= fechaFinInscripcion);
+ALTER TABLE retos ADD CONSTRAINT CHECK2 CHECK (fechaInicioReto <= fechaFinReto);

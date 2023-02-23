@@ -18,7 +18,7 @@ class ControladorCategoria
      */
     public function index()
     {
-        require_once 'vista/header.php';
+        require_once 'vista/headeruser.php';
         require_once 'vista/categoria/categoria.php';
     }
 
@@ -44,7 +44,7 @@ class ControladorCategoria
             $categoria = $this->modelo->obtener($_REQUEST['id']);
         }
 
-        require_once 'vista/header.php';
+        require_once 'vista/headeruser.php';
         require_once 'vista/categoria/categoriaedit.php';
     }
     /**

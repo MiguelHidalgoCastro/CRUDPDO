@@ -28,13 +28,32 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?c=sesion">Inicio Sesion</a>
+                    <a class="nav-link" href="?c=categoria">Categorias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=reto&a=index">Retos disponibles</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Mis Retos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="?c=reto&a=add">Añadir Reto</a></li>
+                        <li><a class="dropdown-item text-uppercase text-primary" href="?c=reto&a=listarporprofesor">Mis Retos</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Sesion</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="?c=sesion&a=formadd">Crear Usuario</a></li>
+                        <li><a class="dropdown-item" href="?c=sesion&a=cerrarsesion">Cerrar Sesión</a></li>
+                    </ul>
                 </li>
             </ul>
+            <span class="navbar-text mx-5"><?php echo $profesor != null ? 'Bienvenido, ' . $profesor->nombre : 'Estoy en INDEX'; ?></span>
         </div>
     </nav>
