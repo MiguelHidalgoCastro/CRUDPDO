@@ -1,23 +1,27 @@
 <?php
 require_once 'modelo/categoria.php';
-
+require_once 'modelo/profesor.php';
 
 class ControladorCategoria
 {
 
     private $modelo;
+    private $modeloprofesores;
     /**
      * Constructor del Controlador de Categoría
      */
     public function __construct()
     {
         $this->modelo = new Categoria();
+        $this->modeloprofesores = new Profesor();
     }
     /**
      * Función que importa la vista del index de categoría
      */
     public function index()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         require_once 'vista/headeruser.php';
         require_once 'vista/categoria/categoria.php';
     }
@@ -28,6 +32,8 @@ class ControladorCategoria
      */
     public function listar()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $array = $this->modelo->listar();
         return $array;
     }
@@ -38,6 +44,8 @@ class ControladorCategoria
 
     public function crud()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $categoria = new Categoria();
 
         if (isset($_REQUEST['id'])) {

@@ -17,6 +17,8 @@ class ControladorReto
 
     public function index()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $categorias = $this->modelocategorias->listar();
         require_once 'vista/headeruser.php';
         require_once 'vista/reto/reto.php';
@@ -24,6 +26,8 @@ class ControladorReto
 
     public function buscar()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $categorias = $this->modelocategorias->listar();
         require_once 'vista/headeruser.php';
         require_once 'vista/reto/reto.php';
@@ -49,6 +53,8 @@ class ControladorReto
 
     public function add()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $categorias = $this->modelocategorias->listar();
         $profesores = $this->modeloprofesores->listar();
         require_once 'vista/headeruser.php';
@@ -57,6 +63,8 @@ class ControladorReto
 
     public function mod()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $categorias = $this->modelocategorias->listar();
         // $profesores = $this->modeloprofesores->listar();
 
@@ -119,10 +127,11 @@ class ControladorReto
     {
         // $idProfesor = 3; //guardar en la sesion
         $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $retosPublicados = $this->modelo->retosfiltradoporprofesorpublicados($idProfesor);
         $retosBorrador = $this->modelo->retosfiltradoporprofesorborrador($idProfesor);
         $categorias = $this->modelocategorias->listar();
-        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
+      
 
         require_once 'vista/headeruser.php';
         require_once 'vista/reto/retosprofesor.php';
@@ -130,7 +139,8 @@ class ControladorReto
 
     public function consultar()
     {
-
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $idReto = $_GET['id'];
 
         $reto = $this->modelo->obtener($idReto);
@@ -144,6 +154,8 @@ class ControladorReto
 
     public function filtrado()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modeloprofesores->obtenerNombre($idProfesor);
         $idCategoria = $_POST['filtrado'];
         if ($idCategoria != 0) {
             $retospublicados = $this->modelo->filtrado($idCategoria, 'publicado');

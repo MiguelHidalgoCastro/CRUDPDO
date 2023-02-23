@@ -1,6 +1,6 @@
 <div class="container-fluid box col-12">
     <div class="row mb-2">
-        <div class="col-3 h-auto">
+        <div class="col-md-8 col-lg-2 h-auto">
             <a class="nav-link btn btn-outline-success" href="?c=categoria&a=crud">Añadir Categoría</a>
         </div>
 

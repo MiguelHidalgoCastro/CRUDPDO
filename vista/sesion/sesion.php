@@ -3,10 +3,10 @@
         <h1>Inicio Sesion</h1>
     </div>
 
-    <div class="container-fluid mb-3 col-4">
+    <div class="container-fluid mb-3 col-lg-4 col-md-12">
         <form id="frm-sesion" action="?c=sesion&a=iniciarsesion" method="post" enctype="multipart/form-data">
 
-            <div class="form-group mb-2">
+            <div class="form-group w-100 mb-2">
                 <label>Correo</label>
                 <input type="email" name="correo" class="form-control" placeholder="example@email.com" required>
             </div>

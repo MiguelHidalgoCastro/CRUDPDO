@@ -21,7 +21,6 @@ class ControladorSesion
     {
         $profesor = $this->modelo->comprobar($_POST['correo'], $_POST['pass']);
         if ($profesor != null) {
-            require_once 'vista/headeruser.php';
             $_SESSION['user'] = $profesor->id;
             header('Location: index.php');
         }
@@ -36,6 +35,8 @@ class ControladorSesion
 
     public function formadd()
     {
+        $idProfesor = $_SESSION['user'];
+        $profesor = $this->modelo->obtenerNombre($idProfesor);
         if (isset($_SESSION['user']))
             require_once 'vista/headeruser.php';
 
