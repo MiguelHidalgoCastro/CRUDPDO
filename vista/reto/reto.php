@@ -8,10 +8,10 @@
     <div class=" container-fluid mb-3">
         <form id="frm-filtro" action="?c=reto&a=filtrado" method="post" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-3">
+                <div class="col-md-12 col-lg-3 mt-2">
                     <h5>Filtrar por Categoría:</h5>
                 </div>
-                <div class="col-5">
+                <div class="col-md-12 col-lg-5 mt-2">
                     <select class="form-select" aria-label="Select de categorias" name="filtrado" id="filtrado">
                         <option value='0' selected>Todas las categorias</option>
                         <?php foreach ($categorias as $categoria) : ?>
@@ -21,7 +21,7 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="col-4">
+                <div class="col-md-12 col-lg-4 mt-2">
                     <button id="buscar" class="btn btn-secondary">BUSCAR</button>
                 </div>
             </div>

@@ -17,12 +17,12 @@
 
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="assets/favicon.ico" rel="icon" type="image/x-icon" />
-    <title>CRUD PDO</title>
+    <title>WEB RETOS - PDO</title>
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-5">
-        <a class="navbar-brand ms-2 mx-5">CRUD PDO</a>
+        <a class="navbar-brand ms-2 mx-3">WEB RETOS - PDO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,7 +36,7 @@
                     <a class="nav-link" href="?c=categoria">Categorias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?c=reto&a=index">Retos disponibles</a>
+                    <a class="nav-link" href="?c=reto">Retos disponibles</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Mis Retos</a>

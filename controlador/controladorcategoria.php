@@ -1,12 +1,15 @@
 <?php
 require_once 'modelo/categoria.php';
 require_once 'modelo/profesor.php';
-
+/**
+ * Controlador de Categoria
+ */
 class ControladorCategoria
 {
 
     private $modelo;
     private $modeloprofesores;
+
     /**
      * Constructor del Controlador de Categoría
      */
@@ -15,6 +18,7 @@ class ControladorCategoria
         $this->modelo = new Categoria();
         $this->modeloprofesores = new Profesor();
     }
+
     /**
      * Función que importa la vista del index de categoría
      */
@@ -37,11 +41,11 @@ class ControladorCategoria
         $array = $this->modelo->listar();
         return $array;
     }
+
     /**
      * Cargo la vista del formulario de categorías
      * Si existe un id en el $_REQUEST, trae la categoría al front para poder editarla
      */
-
     public function crud()
     {
         $idProfesor = $_SESSION['user'];
@@ -55,6 +59,7 @@ class ControladorCategoria
         require_once 'vista/headeruser.php';
         require_once 'vista/categoria/categoriaedit.php';
     }
+
     /**
      * Función que carga cuando le damos a aceptar, tanto en crear como en editar
      * Actualiza si el id>0
@@ -71,12 +76,15 @@ class ControladorCategoria
             ? $this->modelo->actualizar($categoria)
             : $this->modelo->registrar($categoria);
 
-        header('Location: index.php');
+        header('Location: index.php?c=categoria');
     }
-
+    
+    /**
+     * Función que elimina la categoria con el id que llega por url
+     */
     public function eliminar()
     {
-        $this->modelo->eliminar($_REQUEST['id']);
-        header('Location: index.php');
+        $this->modelo->eliminar($_GET['id']);
+        header('Location: index.php?c=categoria');
     }
 }

@@ -3,7 +3,7 @@
         <h1>Crear Usuario</h1>
     </div>
 
-    <div class="container-fluid mb-3 col-4">
+    <div class="container-fluid mb-3 col-md-12 col-lg-4">
         <form id="frm-adduser" action="?c=sesion&a=adduser" method="post" enctype="multipart/form-data">
             <div class="form-group mb-2">
                 <label>Nombre</label>

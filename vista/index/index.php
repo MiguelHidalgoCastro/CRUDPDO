@@ -1,4 +1,4 @@
-<div class="container box col-3">
+<div class="container box col-md-12 col-lg-3">
     <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">

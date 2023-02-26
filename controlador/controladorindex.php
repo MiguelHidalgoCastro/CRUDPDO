@@ -1,8 +1,14 @@
 <?php
 require_once 'modelo/profesor.php';
+/**
+ * Controlador de Index
+ */
 class ControladorIndex
 {
-
+    /**
+     * Función que muestra la vista index general de la aplicación 
+     * Si está iniciada la sesión carga un header diferente a cuando no hay iniciada sesión
+     */
     public function index()
     {
         $profesor = null;
