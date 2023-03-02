@@ -6,7 +6,7 @@ require_once 'modelo/profesor.php';
 class ControladorSesion
 {
     private $modelo;
-    
+
     /**
      * Constructor
      */
@@ -71,7 +71,7 @@ class ControladorSesion
         $profesor = new Profesor();
         $profesor->nombre = $_POST['nombre'];
         $profesor->correo = $_POST['correo'];
-        $profesor->password = hash('sha512', $_POST['pass']);
+        $profesor->password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
         $this->modelo->addUser($profesor);
         header('Location: index.php');
     }

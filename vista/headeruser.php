@@ -53,6 +53,10 @@
                         <li><a class="dropdown-item" href="?c=sesion&a=cerrarsesion">Cerrar Sesión</a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=pdf">PDF's</a>
+                </li>
             </ul>
             <span class="navbar-text mx-5"><?php echo $profesor != null ? 'Bienvenido, ' . $profesor->nombre : 'Estoy en INDEX'; ?></span>
         </div>

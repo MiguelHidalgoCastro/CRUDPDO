@@ -62,7 +62,7 @@ class Profesor
      * @param String $pass
      * @return Object Si encuentra coincidencia, devuelve un Objeto profesor
      */
-    public function comprobar($correo, $pass)
+    public function comprobar_old($correo, $pass)
     {
         try {
             $sql = "SELECT * FROM profesores WHERE correo = :correo AND pass = :pass";
@@ -70,7 +70,7 @@ class Profesor
             $consulta->execute(array('correo' => $correo, 'pass' => $pass));
 
             if ($consulta->rowCount()) {
-                session_start();
+                // session_start();
                 return $consulta->fetch(PDO::FETCH_OBJ);
             } else
                 return false;
@@ -93,5 +93,33 @@ class Profesor
         } catch (Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    /**
+     * 
+     */
+    public function comprobar($correo, $pass)
+    {
+        try {
+            $sql = "SELECT * FROM profesores WHERE correo = :correo";
+            $consulta = $this->conexion->prepare($sql);
+            $consulta->execute(array('correo' => $correo));
+
+            if ($consulta->rowCount()) {
+                $profesor = $consulta->fetch(PDO::FETCH_OBJ);
+                if (password_verify($pass, $profesor->pass))
+                    return $profesor;
+            } else
+                return false;
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    /**
+     * 
+     */
+    public function inserccion()
+    {
     }
 }
