@@ -121,5 +121,16 @@ class Profesor
      */
     public function inserccion()
     {
+        $data=['Miguel Jaque','mjaque@fundacionloyola.net','1234','Isabel Muñoz','imunoz@fundacionloyola.net','2345','Ernesto Gonzalez','egonzalez@fundacionloyola.net','3456'];
+
+        try {
+            $sql = "INSERT INTO profesores (nombre,correo,pass) VALUES (:nombre, :correo, :pass)";
+            $insert = $this->conexion->prepare($sql);
+            $insert->execute(array('nombre' => $data[0], 'correo' => $data[1], 'pass' => $data[2]));
+            $insert->execute(array('nombre' => $data[3], 'correo' => $data[4], 'pass' => $data[5]));
+            $insert->execute(array('nombre' => $data[6], 'correo' => $data[7], 'pass' => $data[8]));
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 }

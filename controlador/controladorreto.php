@@ -48,34 +48,6 @@ class ControladorReto
     }
 
     /**
-     * Obtiene la lista de los retos globales no publicados
-     * @return Array de Retos
-     */
-    public function listarNoPublicados()
-    {
-        return $this->modeloreto->listarNoPublicados();
-    }
-
-    /**
-     *  Obtiene la lista de los retos globales publicados
-     * @return Array de Retos
-     */
-    public function listarPublicados()
-    {
-        return $this->modeloreto->listarPublicados();
-    }
-
-    /**
-     * Función que obtiene una row con la categoría que entra por parámetro
-     * @param {number} $id el id de la categoría que busco
-     * @return Row Categoría
-     */
-    public function getCategoria($id)
-    {
-        return $this->modelocategorias->obtener($id);
-    }
-
-    /**
      * Añade un reto a la BBDD
      */
     public function add()
@@ -89,7 +61,7 @@ class ControladorReto
     }
 
     /**
-     * Funció que obtiene el reto que se quiere modificar
+     * Función que obtiene el reto que se quiere modificar
      */
     public function mod()
     {
@@ -132,7 +104,7 @@ class ControladorReto
         $reto->ffr = str_replace('T', ' ', $reto->ffr);
 
         $reto->idCategoria = $_POST['idCat'];
-        $reto->idProfesor = $_POST['idProf'];
+        $reto->idProfesor = $_SESSION['user'];
 
         $reto->fechaPublicacion = $_POST['fechaInicioReto'];
 
@@ -211,4 +183,46 @@ class ControladorReto
         require_once 'vista/headeruser.php';
         require_once 'vista/reto/retofind.php';
     }
+
+
+     /**
+     * Obtiene la lista de los retos globales no publicados
+     * @return Array de Retos
+     */
+    public function listarNoPublicados()
+    {
+        return $this->modeloreto->listarNoPublicados();
+    }
+
+    /**
+     *  Obtiene la lista de los retos globales publicados
+     * @return Array de Retos
+     */
+    public function listarPublicados()
+    {
+        return $this->modeloreto->listarPublicados();
+    }
+
+    /**
+     * Función que obtiene una row con la categoría que entra por parámetro
+     * @param {number} $id el id de la categoría que busco
+     * @return Row Categoría
+     */
+    public function getCategoria($id)
+    {
+        return $this->modelocategorias->obtener($id);
+    }
+
+
+    public function listarPublicadosPorCategoria($id)
+    {
+        return $this->modeloreto->listarPublicadosPorCategoria($id);
+    }
+
+
+    public function listarNoPublicadosPorCategoria($id)
+    {
+        return $this->modeloreto->listarNoPublicadosPorCategoria($id);
+    }
+    
 }

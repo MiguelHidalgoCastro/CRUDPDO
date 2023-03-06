@@ -79,6 +79,30 @@ class Reto
         }
     }
 
+    public function listarPublicadosPorCategoria($id)
+    {
+        try {
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idCategoria = ? AND publicado = 1");
+            $consulta->execute([$id]);
+
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function listarNoPublicadosPorCategoria($id)
+    {
+        try {
+            $consulta = $this->conexion->prepare("SELECT * FROM retos WHERE idCategoria = ? AND publicado = 0");
+            $consulta->execute([$id]);
+
+            return $consulta->fetchAll(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
     /**
      * Funcion que obtiene todos los retos publicados de un profesor en concreto
      * @param Number $id id del profesor, que es el que está guardado en la sesión

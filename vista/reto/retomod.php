@@ -18,17 +18,17 @@
                 <label>Publicar</label>
                 <select class="form-select" aria-label="Select de publicar" name='publicar'>
                     <option selected disabled hidden>---Selecciona---</option>
-                    <?php if ($reto->publicado == 1) {
+                    <?php if ($reto->publicado == 0) {
                         echo '
-                    <option value="0" >Publicar Reto</option>
-                    <option value="1" selected>Guardar Borrador</option>
+                    <option value="0" selected>Guardar Borrador</option>
+                    <option value="1" >Publicar Reto</option>
                     ';
                     }
 
-                    if ($reto->publicado == 0) {
+                    if ($reto->publicado == 1) {
                         echo '
-                    <option value="0" selected>Publicar Reto</option>
-                    <option value="1">Guardar Borrador</option>
+                    <option value="0">Guardar Borrador</option>
+                    <option value="1" selected>Publicar Reto</option>
                     ';
                     }
 

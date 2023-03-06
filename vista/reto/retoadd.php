@@ -24,23 +24,9 @@
                 <label for="idCat">Categoría</label>
                 <select class="form-select" aria-label="Select de categorias" name="idCat">
                     <option selected disabled hidden>---Selecciona---</option>
-
                     <?php foreach ($categorias as $categoria) : ?>
                         <option value=<?php echo $categoria->id ?>><?php echo $categoria->nombre ?></option>
                     <?php endforeach; ?>
-
-
-                </select>
-            </div>
-            <div class="col-5 form-group">
-                <label for="idProf">Profesor</label>
-                <select class="form-select" aria-label="Select de profesores" name="idProf">
-                    <option selected disabled hidden>---Selecciona---</option>
-
-                    <?php foreach ($profesores as $profesor) : ?>
-                        <option value=<?php echo $profesor->id ?>><?php echo $profesor->nombre ?></option>
-                    <?php endforeach; ?>
-
                 </select>
             </div>
         </div>
